@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_self_help_tips_tree" model="ir.ui.view">
+        <field name="name">self_help.tips.tree</field>
+        <field name="model">self_help.tips</field>
+        <field name="arch" type="xml">
+            <tree string="Daftar Tips">
+                <field name="judul"/>
+                <field name="level_resiko"/>
+                <field name="admin_id"/>
+                <field name="tanggal_publikasi"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_self_help_tips_form" model="ir.ui.view">
+        <field name="name">self_help.tips.form</field>
+        <field name="model">self_help.tips</field>
+        <field name="arch" type="xml">
+            <form string="Detail Tips">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="judul" placeholder="Judul Tips/Artikel..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="level_resiko" widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="admin_id" readonly="1"/>
+                            <field name="tanggal_publikasi"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Konten Tips" name="content">
+                            <field name="isi_tips" widget="html" options="{'style-inline': true}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_self_help_tips" model="ir.actions.act_window">
+        <field name="name">Tips &amp; Edukasi</field>
+        <field name="res_model">self_help.tips</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Belum ada tips yang dipublikasikan.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_self_help_root" name="Self Help" sequence="30"/>
+    <menuitem id="menu_self_help_tips" name="Tips &amp; Artikel" parent="menu_self_help_root" action="action_self_help_tips" sequence="10"/>
+</odoo>

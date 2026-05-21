@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_pendamping_konselor" model="ir.actions.act_window">
+        <field name="name">Daftar Konselor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pendamping.konselor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tambahkan konselor pertama Anda!
+            </p>
+        </field>
+    </record>
+
+    <record id="view_pendamping_konselor_tree" model="ir.ui.view">
+        <field name="name">pendamping.konselor.tree</field>
+        <field name="model">pendamping.konselor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nama"/>
+                <field name="spesialis"/>
+                <field name="nomor_wa"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pendamping_konselor_form" model="ir.ui.view">
+        <field name="name">pendamping.konselor.form</field>
+        <field name="model">pendamping.konselor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="nama"/>
+                            <field name="spesialis"/>
+                        </group>
+                        <group>
+                            <field name="nomor_wa"/>
+                            <field name="link_wa" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Jadwal Praktik">
+                            <field name="jadwal"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_pendamping_root" 
+              name="Konselor" 
+              sequence="10"/>
+
+    <menuitem id="menu_pendamping_konselor" 
+              name="Konselor" 
+              parent="menu_pendamping_root" 
+              action="action_pendamping_konselor" 
+              sequence="10"/>
+</odoo>

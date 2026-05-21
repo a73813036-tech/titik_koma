@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_chatbot_ai_tree" model="ir.ui.view">
+        <field name="name">chatbot.ai.tree</field>
+        <field name="model">chatbot.ai</field>
+        <field name="arch" type="xml">
+            <tree string="Riwayat Chatbot">
+                <field name="tanggal"/>
+                <field name="mahasiswa_id"/>
+                <field name="pesan_mahasiswa"/>
+                <field name="respon_ai"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_chatbot_ai_form" model="ir.ui.view">
+        <field name="name">chatbot.ai.form</field>
+        <field name="model">chatbot.ai</field>
+        <field name="arch" type="xml">
+            <form string="Detail Chat">
+                <sheet>
+                    <group>
+                        <field name="mahasiswa_id" readonly="1"/>
+                        <field name="tanggal" readonly="1"/>
+                    </group>
+                    <group string="Percakapan">
+                        <field name="pesan_mahasiswa" readonly="1"/>
+                        <field name="respon_ai" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_chatbot_ai" model="ir.actions.act_window">
+        <field name="name">Chatbot AI</field>
+        <field name="res_model">chatbot.ai</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_chatbot_root" name="Chatbot" sequence="40"/>
+    <menuitem id="menu_chatbot_ai" name="Riwayat Chat" parent="menu_chatbot_root" action="action_chatbot_ai" sequence="10"/>
+</odoo>
